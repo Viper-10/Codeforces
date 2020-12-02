@@ -3,6 +3,7 @@
 #include<stdio.h>
 #define min(a, b) a < b ? a : b
 using namespace std; 
+char s[1000000]; 
 int main(){
 	
 	int t; 
@@ -13,33 +14,28 @@ int main(){
 		int n, p, k; 
 		scanf("%d%d%d", &n, &p, &k); 
 
-		char* s = new char[n]; 
-
 		scanf("%s", s); 
 		
 		int x, y; 
 
 		scanf("%d%d", &x, &y); 
 
-		int* log = new int[n-p]; 
-		
-		for(int i = n-1; i >= p; --i){
-			if(s[i] == '0'){
-				log[i] = x; 
-			}
+		vector<int> log(n, 0); 	
 
-			if(i+k < n){
-				log[i] += log[i+k]; 
-			}
-		}
+		p -= 1; 
 
 		int64_t minCost = INT32_MAX; 
 		
-		for(int i = 0;i < n-p; ++i){
-			minCost = min(minCost, log[i] + y * i); 			
-		}			
+		for(int i = n-1;i >= p; --i){
+			if(s[i] == '0') log[i] = x; 
 
-		printf("%d\n", minCost); 
+			if(i+k < n) log[i] += log[i+k]; 
+
+			minCost = min(minCost, log[i]+y * (i-p)); 
+		}
+
+
+		printf("%ld\n", minCost); 
 	}
 	return 0; 
 }
