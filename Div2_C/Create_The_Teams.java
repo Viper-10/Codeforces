@@ -1,5 +1,5 @@
 import java.util.*; 
-public class Solution{
+public class Create_The_Teams{
 
     public static void main(String args[]){
 
