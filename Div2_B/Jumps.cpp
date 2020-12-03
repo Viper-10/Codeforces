@@ -6,7 +6,7 @@ int binarySearch(vector<int>& arr, const int& x){
     int start = 0, end = arr.size()-1; 
     int index = -1; 
 
-    while(start < end){
+    while(start <= end){
         int mid = (end+start)/2; 
 
         if(arr[mid] >= x){
@@ -25,12 +25,11 @@ int main(){
     cin >> t; 
 
     vector<int> arr;
-    
-    arr[0] = 0; 
-    arr[1] = 1; 
+
+    arr.push_back(0);  
  
-    for(int i = 2; arr.back() < 1000000; ++i){
-        arr.push_back(i * (i+1)/2); 
+    for(int i = 1; arr.back() < 1000000; ++i){
+        arr.push_back(arr[i-1] + i); 
     }
 
     while(t--){
@@ -46,7 +45,7 @@ int main(){
         }
 
         else{
-            (pos - n == 1) ? cout << index+1 << endl : cout << index + 2 << endl;   
+            (pos - n == 1) ? cout << index+1 << endl : cout << index << endl;   
         }
     }
 
